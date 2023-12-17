@@ -271,12 +271,13 @@ void actionNode(int player)
 					
 					if(cur_player[player].energy < smmObj_getEnergy( boardPtr )) {
 						//에너지 비교
-						 
+						 printf("-> %s is too hungry to take the lecture %s (remained:%i, required:%i)",cur_player[player].name, 
+						 smmObj_getName(smmdb_getData(LISTNO_NODE, position)),cur_player[player].energy, smmObj_getEnergy(smmdb_getData(LISTNO_NODE, position)));
 						break;
 					}
 					if(findBoardUse(player, smmObj_getName(smmdb_getData(LISTNO_NODE, position))) == 1) {
 						//이미 들었던 항 목
-						 
+						 printf("-> %s has already taken the lecture %s!!",cur_player[player].name ,smmObj_getName(smmdb_getData(LISTNO_NODE, position)));
 						break;
 					}
 					cur_player[player].accumCredit += smmObj_getCredit( boardPtr );
