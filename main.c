@@ -300,7 +300,7 @@ void actionNode(int player)
 			}
             break;
             
-	    case SMMNODE_TYPE_FOODCHANCE:
+	    case SMMNODE_TYPE_FOODCHANCE: //음식을 고르는 경 우
 		 		printf("-> %s gets a food chance! press any key to pick a food card: ",cur_player[player].name);
 		 		
 			    c = getchar();
@@ -317,7 +317,7 @@ void actionNode(int player)
 		 	
 		 		
 	            break;
-	    case SMMNODE_TYPE_FESTIVAL:
+	    case SMMNODE_TYPE_FESTIVAL:  //축제의 경우  
 		 		printf("%s participates to Snow Festival! press any key to pick a festival card: ",cur_player[player].name); //이름이 이상하게 나옴 
 		 		
 			    scanf(" %s", &a);
@@ -333,11 +333,11 @@ void actionNode(int player)
 			    fflush(stdin);
 		 		
 	            break;
-	   	case SMMNODE_TYPE_GOTOLAB:
+	   	case SMMNODE_TYPE_GOTOLAB: //실험실로 이동  
 		   	printf("-> OMG! This is experiment time!! Player a goes to the lab.\n");
 		    	cur_player[player].labaratory = 1;
 	   		break;
-		case SMMNODE_TYPE_LABORATORY:
+		case SMMNODE_TYPE_LABORATORY: //실험중  
 			if(cur_player[player].labaratory == 1) {
 				int temp = 4;
 				printf("\n");
@@ -384,7 +384,7 @@ void goForward(int player, int step)
 	
 		for (i = 0;i< step - (16 - fullposition);i++) {
 	     	boardPtr = smmdb_getData(LISTNO_NODE, i);
-		 	printf("=> jumpe to %s \n",smmObj_getName(boardPtr));//지나간 곳이랑 도착한 곳도 나와야 함-if문 사용?
+		 	printf("=> jumpe to %s \n",smmObj_getName(boardPtr));
 		 		if(i == 0) {
 	 		cur_player[player].energy += 18;
 	 		printf("-> returned to HOME! energy charged by 18 (total : %i) \n", cur_player[player].energy);
@@ -399,12 +399,12 @@ void goForward(int player, int step)
 	 } else {
 	 	for (i = cur_player[player].position - step;i< cur_player[player].position;i++) {
      	boardPtr = smmdb_getData(LISTNO_NODE, i);
-	 	printf("=> jumpe to %s \n",smmObj_getName(boardPtr));//지나간 곳이랑 도착한 곳도 나와야 함-if문 사용?
+	 	printf("=> jumpe to %s \n",smmObj_getName(boardPtr));
 	
 	}          
 	 }
                                                                                                 
-	//p
+	
                 //cur_player[player].name, cur_player[player].position,smmObj_getName(boardPtr));
 }
 
@@ -533,7 +533,7 @@ int main(int argc, const char * argv[]) {
     
     fclose(fp);
     printf("Total number of festival cards : %i\n", festival_nr);
-    for (i = 0;i< festival_nr;i++)//음식 코드 출력 
+    for (i = 0;i< festival_nr;i++)//축제  코드 출력 
     {
         void *festival = smmdb_getData(LISTNO_FESTCARD, i);
         
